@@ -1,0 +1,11 @@
+1.Pentingnya MVVM & Representasi File
+◦Pentingnya: MVVM (Model-View-ViewModel) penting karena memisahkan tampilan (View), data (Model), dan logika (ViewModel). Ini membuat kode lebih rapi, mudah diuji, dan gampang dikelola.
+◦Representasi File:
+  ▪Model (Data & Logika Bisnis): Movie.kt, MovieDatabase.kt, MovieDAO.kt, dan MovieRepository.kt.▪View (Tampilan UI): MainActivity.kt dan file layout XML-nya. MovieAdapter.kt juga bagian dari View karena menampilkan data.
+  ▪ViewModel (Penghubung): Dalam proyek ini belum ada file ViewModel khusus, namun idealnya logika di   MainActivity akan dipindah ke file seperti MovieViewModel.kt.
+
+2.Efisiensi Data Binding Data Binding lebih efisien karena menghilangkan panggilan findViewById() yang boros waktu. Ia membuat referensi langsung ke komponen UI saat kompilasi (compile-time), bukan mencarinya saat aplikasi berjalan (run-time). Ini membuat kode lebih bersih, cepat, dan aman dari error karena salah ID.
+
+3.Pentingnya Singleton Pattern Singleton Pattern penting untuk objek yang mahal untuk dibuat, seperti koneksi database (MovieDatabase). Pola ini memastikan hanya ada satu instansi dari objek tersebut di seluruh aplikasi, sehingga menghemat memori dan mencegah inkonsistensi data.
+
+4.Pentingnya Repository Pattern Repository Pattern penting karena ia bertindak sebagai perantara antara sumber data (database lokal, API online) dan seluruh aplikasi. Tujuannya adalah menyediakan "sumber data tunggal yang terpercaya" (Single Source of Truth). ViewModel tidak perlu pusing data datang dari mana, cukup memintanya dari Repository. Ini membuat kode lebih terstruktur dan mudah diuji.5.Cara Lain Refresh Database Selain Worker Ya, ada. WorkManager bagus untuk tugas terjadwal di latar belakang, tapi ada alternatif lain:◦Coroutines: Untuk refresh data yang dipicu langsung oleh aksi pengguna, misalnya saat "pull-to-refresh". Ini adalah cara paling umum untuk sinkronisasi data saat aplikasi sedang digunakan.◦Firebase Cloud Messaging (FCM): Menggunakan silent push notification dari server untuk memberi tahu aplikasi kapan harus memperbarui data. Cara ini efisien karena server yang proaktif, bukan aplikasi yang terus-menerus mengecek.
